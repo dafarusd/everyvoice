@@ -1,6 +1,7 @@
 package org.everyvoice.aac.ui.screens
 
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -24,7 +25,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import java.io.File
 
 /**
  * Add/edit dialog for tiles.
@@ -50,9 +53,27 @@ fun TileEditDialog(
     var icon by remember { mutableStateOf(initialIcon) }
     var photo by remember { mutableStateOf<Bitmap?>(null) }
 
+    // The camera writes into our own cache and we decode the file. Asking for
+    // a preview bitmap instead returns roughly 190x250 pixels, which is too
+    // soft to recognise once a tile is more than a quarter of the screen.
+    val context = LocalContext.current
+    var pending by remember { mutableStateOf<File?>(null) }
+
     val cameraLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.TakePicturePreview()
-    ) { bitmap -> if (bitmap != null) photo = bitmap }
+        ActivityResultContracts.TakePicture()
+    ) { saved ->
+        val file = pending
+        pending = null
+        if (file != null) {
+            photo = if (saved) PhotoCapture.decodeAndClear(file) else null.also { file.delete() }
+        }
+    }
+
+    fun takePhoto() {
+        val (file, uri: Uri) = PhotoCapture.newCaptureTarget(context)
+        pending = file
+        cameraLauncher.launch(uri)
+    }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -88,14 +109,14 @@ fun TileEditDialog(
 
                 if (allowPhoto) {
                     Row(modifier = Modifier.padding(top = 12.dp)) {
-                        OutlinedButton(onClick = { cameraLauncher.launch(null) }) {
+                        OutlinedButton(onClick = { takePhoto() }) {
                             Text(if (photo == null) "Take a photo" else "Retake photo")
                         }
                         photo?.let { bitmap ->
                             Image(
                                 bitmap = bitmap.asImageBitmap(),
                                 contentDescription = "Photo for this button",
-                                contentScale = ContentScale.Crop,
+                                contentScale = ContentScale.Fit,
                                 modifier = Modifier
                                     .padding(start = 12.dp)
                                     .width(72.dp)

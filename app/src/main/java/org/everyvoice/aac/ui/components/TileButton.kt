@@ -92,7 +92,12 @@ private fun TileImage(imagePath: String, modifier: Modifier = Modifier) {
         Image(
             bitmap = it,
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            // Fit, never Crop. The label leaves the image slot wider than it
+            // is tall, so cropping a portrait photo shows a horizontal band
+            // through the middle of it — a picture of a person becomes their
+            // chin. Someone who cannot read is navigating by this picture, so
+            // showing all of it small beats showing part of it large.
+            contentScale = ContentScale.Fit,
             modifier = modifier,
         )
     }

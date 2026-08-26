@@ -21,6 +21,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EveryVoice">
 
+        <!-- Lets the camera app write a full-resolution capture into our
+             own cache directory. Without it the app can only receive the
+             camera's preview thumbnail, which is roughly 190x250. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
