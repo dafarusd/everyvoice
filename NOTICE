@@ -1,0 +1,54 @@
+EveryVoice — a free, offline, open-source communication app for people who
+cannot rely on speech
+Copyright (c) 2026 Dafarus (dafarusd). All rights reserved.
+
+============================================================
+LICENSE
+============================================================
+
+This project is licensed under the GNU Affero General Public License v3.0
+(AGPL-3.0-only). See the LICENSE file for the full text.
+
+The AGPL requires that anyone who runs a modified version of this software
+to provide a network service must make their complete corresponding source
+available to the users of that service.
+
+This covers the application, the sentence engine, the search and backup
+code, and the starter vocabulary, all of which are original works of the
+copyright holder.
+
+============================================================
+THIRD-PARTY COMPONENTS
+============================================================
+
+The app depends only on Android system libraries published by Google under
+the Apache License 2.0:
+
+  androidx.core, androidx.activity, androidx.lifecycle,
+  androidx.compose (UI, foundation, material3),
+  androidx.room
+
+Speech is produced by whichever text-to-speech engine is installed on the
+user's device. No such engine is bundled, and none is a work of the
+copyright holder.
+
+Emoji shown on buttons are rendered from the device's own system font and
+carry that font's license.
+
+============================================================
+WHAT IS NOT INCLUDED
+============================================================
+
+No symbol library is bundled. The widely used AAC symbol sets — PCS,
+SymbolStix and Widgit — are proprietary and licensed separately. Version 0.1
+uses emoji and caregiver-supplied photographs instead. If an open symbol set
+is added in future it will be Mulberry (CC BY-SA) or another set whose
+license permits redistribution here, and this file will say so.
+
+============================================================
+NOT A MEDICAL DEVICE
+============================================================
+
+See DISCLAIMER.md. This software has not been reviewed or approved by any
+regulator, has not been evaluated by a speech-language pathologist, and
+makes no clinical claim of any kind.

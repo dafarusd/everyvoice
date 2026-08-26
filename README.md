@@ -49,8 +49,9 @@ The barrier was never knowledge. It was price. So the price is now zero.
   than a licensed symbol library (PCS/Boardmaker symbols are proprietary).
   Bundling an open symbol set (Mulberry, CC BY-SA) is planned.
 - **Not user-verified.** As of v0.1 the app is built, unit-tested, and
-  APK-verified — but it has not been tested with a single real AAC user.
-  That is the next milestone, and claims about effectiveness wait for it.
+  device-verified on one phone — but it has not been tested with a single
+  real AAC user, and no speech-language pathologist has reviewed it. That is
+  the next milestone, and claims about effectiveness wait for it.
 
 ## Build
 
@@ -96,8 +97,32 @@ not the bar.
 5. Fixed motor-planning layouts (words never move position).
 6. Play Store / F-Droid release — preceded by testing with real users.
 
+## Install it
+
+Download `everyvoice-0.1.0.apk` from the
+[latest release](https://github.com/dafarusd/everyvoice/releases/latest) and
+open it on the phone. Android will ask you to allow installing from that
+source — that is the normal prompt for an app that does not come from the
+Play Store.
+
+Or build it yourself from the instructions above. The APK in the release is
+signed with the project's upload key, so an APK you build will not install
+over it; uninstall first, and export a backup before you do.
+
+## Please read before relying on it
+
+[DISCLAIMER.md](DISCLAIMER.md) — not a medical device, not therapy, not a
+replacement for a speech-language pathologist, and not yet tested with a
+single AAC user.
+
+[PRIVACY.md](PRIVACY.md) — what stays on the device, and the one thing that
+is not ours.
+
 ## License
 
-Code: MIT (choose on first public release). Seed vocabulary: original,
-compilable from published core-vocabulary research. Emoji glyphs render
-from the device's own font and carry their own platform licenses.
+GNU Affero General Public License v3.0 (AGPL-3.0-only). See
+[LICENSE](LICENSE) and [NOTICE](NOTICE).
+
+The starter vocabulary is original, compiled from published core-vocabulary
+research. No proprietary symbol set is bundled — see NOTICE. Emoji render
+from the device's own font and carry that font's license.
