@@ -19,3 +19,6 @@ local.properties
 # Keystores — a signing key never belongs in a repository
 *.jks
 *.keystore
+
+# Signing
+keystore.properties
