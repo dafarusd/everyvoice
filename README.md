@@ -71,8 +71,13 @@ of active devices).
 |---|---|
 | Engine (sentence strip, search, vocabulary seed, tile identity) | 32 JVM unit tests passing |
 | App packaging | Debug APK builds clean (9.4 MB), no network permission in the built artifact |
-| On-device behavior (TTS voices, camera, backup) | SOURCE-COMPLETE, NOT device-verified |
+| Speech output | Device-verified on a Galaxy A15 (Android 16): speaks aloud from an on-device voice, no network |
+| Backup and restore | Device-verified: full round trip through the system file picker, including a deliberately corrupted file |
+| Camera photo tiles, missing-voice banner | SOURCE-COMPLETE, NOT device-verified |
 | Clinical effectiveness | NOT claimed. Requires testing with AAC users and SLP review |
+
+Tested on one phone, by one person who is not an AAC user. That is the floor,
+not the bar.
 
 ## Design rules that will not change
 
