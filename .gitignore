@@ -1,0 +1,21 @@
+# Build output
+build/
+app/build/
+*.apk
+*.aab
+
+# Gradle
+.gradle/
+local.properties
+
+# Kotlin
+.kotlin/
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Keystores — a signing key never belongs in a repository
+*.jks
+*.keystore
