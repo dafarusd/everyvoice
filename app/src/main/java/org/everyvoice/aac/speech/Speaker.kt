@@ -81,7 +81,14 @@ class Speaker(context: Context) {
     fun speak(text: String) {
         val engine = tts ?: return
         if (_state.value != VoiceState.READY || text.isBlank()) return
-        engine.speak(text, TextToSpeech.QUEUE_FLUSH, null, UTTERANCE_ID)
+
+        // A short silence opens the audio path before the first phoneme.
+        // Without it the opening sound is clipped: on a Galaxy A15 the
+        // sentence "I want." was heard as "o want". The first word in AAC is
+        // disproportionately "I", "no", "stop" or "help", so a clipped
+        // opening is a lost word rather than a rough edge.
+        engine.playSilentUtterance(LEAD_IN_MS, TextToSpeech.QUEUE_FLUSH, "$UTTERANCE_ID-lead")
+        engine.speak(text, TextToSpeech.QUEUE_ADD, null, UTTERANCE_ID)
     }
 
     fun shutdown() {
@@ -94,6 +101,9 @@ class Speaker(context: Context) {
     private companion object {
         const val TAG = "Speaker"
         const val SPEECH_RATE = 0.95f
+
+        /** Silence before each utterance, in milliseconds. */
+        const val LEAD_IN_MS = 120L
         const val UTTERANCE_ID = "everyvoice"
     }
 }

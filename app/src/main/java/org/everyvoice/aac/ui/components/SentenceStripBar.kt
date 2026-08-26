@@ -3,9 +3,14 @@ package org.everyvoice.aac.ui.components
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -25,6 +30,13 @@ import org.everyvoice.aac.engine.Tile
  *
  * The strip never hides. Communication that requires navigation is
  * communication that arrives too late.
+ *
+ * It also never hides *behind* anything. Android 15 forces apps that target
+ * SDK 35 to draw edge to edge, and without an inset the strip lands under the
+ * navigation bar: measured on a Galaxy A15 the nav bar owns [0,2205][1080,2340]
+ * and SPEAK sat entirely inside it, so tapping the visible button pressed the
+ * system Back key instead. safeDrawing covers the navigation bar, the display
+ * cutout and the keyboard, so the strip stays reachable in every state.
  */
 @Composable
 fun SentenceStripBar(
@@ -35,7 +47,9 @@ fun SentenceStripBar(
     modifier: Modifier = Modifier,
 ) {
     Surface(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom)),
         color = androidx.compose.material3.MaterialTheme.colorScheme.surfaceVariant,
     ) {
         Row(

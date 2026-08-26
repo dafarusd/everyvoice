@@ -45,10 +45,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.everyvoice.aac.data.ButtonEntity
+import org.everyvoice.aac.speech.VoiceState
 import org.everyvoice.aac.ui.AacViewModel
 import org.everyvoice.aac.ui.Notice
 import org.everyvoice.aac.ui.Screen
 import org.everyvoice.aac.ui.components.SentenceStripBar
+import org.everyvoice.aac.ui.components.VoiceWarning
 import org.everyvoice.aac.ui.components.TileButton
 
 /**
@@ -58,7 +60,7 @@ import org.everyvoice.aac.ui.components.TileButton
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppRoot(viewModel: AacViewModel) {
+fun AppRoot(viewModel: AacViewModel, voiceState: VoiceState) {
     val screen by viewModel.screen.collectAsStateWithLifecycle()
     val categories by viewModel.categories.collectAsStateWithLifecycle()
     val tiles by viewModel.tiles.collectAsStateWithLifecycle()
@@ -104,7 +106,11 @@ fun AppRoot(viewModel: AacViewModel) {
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            // Both live in the top slot so TopAppBar keeps applying the
+            // status bar inset for the whole group; a banner placed above the
+            // Scaffold would draw under the status bar instead.
+            Column {
+                TopAppBar(
                 title = { Text(title, fontSize = 22.sp) },
                 navigationIcon = {
                     if (screen is Screen.Category) {
@@ -153,7 +159,9 @@ fun AppRoot(viewModel: AacViewModel) {
                         }
                     }
                 },
-            )
+                )
+                VoiceWarning(voiceState)
+            }
         },
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
