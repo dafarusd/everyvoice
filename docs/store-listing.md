@@ -4,6 +4,11 @@ Draft copy for Google Play and F-Droid. Character limits are Play's.
 Nothing here claims the app helps anyone communicate better — that claim
 needs evidence this project does not have yet.
 
+The declared target audience on Play is 13+, so this copy does not present
+children as the audience. It is written for the adult setting the app up.
+The app is of course used by younger people; that is the parent's call, not
+a claim the listing makes.
+
 ---
 
 ## App name (30 char limit)
@@ -24,9 +29,12 @@ Tap a word, the phone speaks. Free, offline, no ads, no account.
 EveryVoice is a free communication app for people who cannot rely on speech.
 
 Tap a word or a picture and the phone says it out loud. Tap several and it
-speaks the whole sentence. It is meant for anyone who is nonverbal or
-minimally verbal — autistic children, adults after a stroke, people living
-with ALS, cerebral palsy, Down syndrome, or a brain injury.
+speaks the whole sentence. It is for anyone who is nonverbal or minimally
+verbal — after a stroke, with ALS, cerebral palsy, Down syndrome, autism, or
+a brain injury.
+
+EveryVoice is set up by the person supporting them: a family member, a
+caregiver, or a therapist, who chooses the words and arranges them.
 
 It costs nothing, it works with no internet connection, and it asks for no
 account.
@@ -127,12 +135,13 @@ APK.
 | Privacy policy | https://github.com/dafarusd/everyvoice/blob/main/PRIVACY.md |
 | Support | https://github.com/dafarusd/everyvoice/issues |
 
-## Assets still needed
+## Assets
 
-- 512 × 512 app icon (the current launcher icon is a placeholder vector)
-- 1024 × 500 feature graphic
-- At least two phone screenshots — the category grid and a sentence in the
-  strip are the two that show what it does
+- `store/icon-512.png` — 512 × 512, 32-bit
+- `store/feature-1024x500.png` — 1024 × 500, no alpha
+- `screenshots/01-categories.png` and `screenshots/02-sentence.png` — 1080 × 2340
+
+All four generated or captured; see `make-store-assets.py` for the first two.
 
 ## What's new (release notes for 0.1.0)
 
