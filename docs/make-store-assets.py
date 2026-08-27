@@ -26,19 +26,34 @@ SS = 4  # supersample factor; PIL has no antialiased polygon fill
 def draw_bubble(draw, scale, ox, oy, body, detail):
     """The ic_launcher path, in its original 48-unit space.
 
+    A bubble containing two lines of text is the universal glyph for a text
+    message, which is the opposite of what this app does. The speaker and the
+    waves are the part that says "this speaks out loud".
+
     body   — colour of the bubble
-    detail — colour of the two text lines inside it
+    detail — colour of the speaker inside it
     """
     def p(x, y):
         return (ox + x * scale, oy + y * scale)
 
-    # Rounded body, 4,4 to 44,36, corner radius 6.
+    # Rounded body, 4,4 to 44,36, corner radius 6, plus the tail.
     draw.rounded_rectangle([p(4, 4), p(44, 36)], radius=6 * scale, fill=body)
-    # The tail.
     draw.polygon([p(22, 36), p(12, 44), p(12, 36)], fill=body)
-    # Two lines of "text", the thing the bubble is saying.
-    draw.rounded_rectangle([p(14, 16), p(34, 19.5)], radius=0.6 * scale, fill=detail)
-    draw.rounded_rectangle([p(14, 22.5), p(28, 26)], radius=0.6 * scale, fill=detail)
+
+    # Speaker cone.
+    draw.polygon(
+        [p(15, 17.5), p(18.5, 17.5), p(22.5, 13.5),
+         p(22.5, 26.5), p(18.5, 22.5), p(15, 22.5)],
+        fill=detail,
+    )
+
+    # Two sound waves, drawn as arcs opening to the right.
+    for radius in (5.2, 9.0):
+        box = [p(23.5 - radius, 20 - radius), p(23.5 + radius, 20 + radius)]
+        draw.arc(
+            [box[0][0], box[0][1], box[1][0], box[1][1]],
+            start=-48, end=48, fill=detail, width=max(1, int(1.8 * scale)),
+        )
 
 
 def store_icon(size=512):
