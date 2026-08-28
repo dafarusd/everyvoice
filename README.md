@@ -126,3 +126,7 @@ GNU Affero General Public License v3.0 (AGPL-3.0-only). See
 The starter vocabulary is original, compiled from published core-vocabulary
 research. No proprietary symbol set is bundled — see NOTICE. Emoji render
 from the device's own font and carry that font's license.
+
+---
+
+Built by Dafarus — [@Dafarusd on X](https://x.com/Dafarusd)
