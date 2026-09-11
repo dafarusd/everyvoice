@@ -21,7 +21,7 @@ than a restaurant meal. The vocabulary research is unambiguous: a few
 hundred core words cover the large majority of everyday communication.
 The barrier was never knowledge. It was price. So the price is now zero.
 
-## What it does (v0.1)
+## What it does (v0.1.2)
 
 - **13 categories, 300+ core words and phrases**, seeded from published
   core-vocabulary research: Core, Phrases, People, Actions, Food & Drink,
@@ -45,11 +45,11 @@ The barrier was never knowledge. It was price. So the price is now zero.
 - **Not a medical device and not therapy.** AAC works best alongside a
   speech-language pathologist. This app removes the price gate; it does
   not replace professional guidance.
-- **Not yet symbol-based.** v0.1 uses emoji and caregiver photos rather
+- **Not yet symbol-based.** 0.1.2 uses emoji and caregiver photos rather
   than a licensed symbol library (PCS/Boardmaker symbols are proprietary).
   Bundling an open symbol set (Mulberry, CC BY-SA) is planned.
-- **Not user-verified.** As of v0.1 the app is built, unit-tested, and
-  device-verified on one phone — but it has not been tested with a single
+- **Not user-verified.** As of 0.1.2 the app is built, unit-tested, and
+  device-verified on one phone — but it hasn't been tested with a single
   real AAC user, and no speech-language pathologist has reviewed it. That is
   the next milestone, and claims about effectiveness wait for it.
 
@@ -71,7 +71,7 @@ of active devices).
 | Layer | Status |
 |---|---|
 | Engine (sentence strip, search, vocabulary seed, tile identity) | 32 JVM unit tests passing |
-| App packaging | Debug APK builds clean (9.4 MB), no network permission in the built artifact |
+| App packaging | Release APK 1.3 MB, debug 9.3 MB, both build clean, no network permission in the built artifact |
 | Speech output | Device-verified on a Galaxy A15 (Android 16): speaks aloud from an on-device voice, no network |
 | Backup and restore | Device-verified: full round trip through the system file picker, including a deliberately corrupted file |
 | Camera photo tiles, missing-voice banner | SOURCE-COMPLETE, NOT device-verified |
@@ -99,7 +99,7 @@ not the bar.
 
 ## Install it
 
-Download `everyvoice-0.1.0.apk` from the
+Download `everyvoice-0.1.2.apk` (1.3 MB) from the
 [latest release](https://github.com/dafarusd/everyvoice/releases/latest) and
 open it on the phone. Android will ask you to allow installing from that
 source — that is the normal prompt for an app that does not come from the
@@ -129,4 +129,12 @@ from the device's own font and carry that font's license.
 
 ---
 
-Built by Dafarus — [@Dafarusd on X](https://x.com/Dafarusd)
+Built by Dafarus — local-first software and hardware you own.
+
+Follow the work on X: [@Dafarusd](https://x.com/Dafarusd)
+
+My companies:
+- Steel Valley Burners — [Facebook](https://www.facebook.com/steelvalleyburners)
+- Keephaven — [keephaven.co](https://keephaven.co) · [X](https://x.com/Keephaven) · [Facebook](https://www.facebook.com/profile.php?id=61592155452190)
+
+More work: [gate](https://github.com/dafarusd/gate) · [Sentinel](https://github.com/dafarusd/sentinel-public) · [Agent Ultra](https://github.com/dafarusd/Ultra-Agent-Release) · [EveryVoice](https://github.com/dafarusd/everyvoice) · [Mind Meld](https://github.com/dafarusd/mindmeld) · [monero-swap](https://github.com/dafarusd/monero-swap)
